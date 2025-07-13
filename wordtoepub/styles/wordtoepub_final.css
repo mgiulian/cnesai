@@ -102,13 +102,13 @@ ol {
     margin-top: 0em;
     margin-bottom: 0.3em;
     padding-left: 1.2em;
-    list-style-position: inside;
+    list-style-position: outside;
 }
 
 ul ul {
   list-style-type: square;
-  padding-left: 1.2em;
-  list-style-position: inside;
+  padding-left: 1.5em;
+  list-style-position: outside;
   h1,
   h2,
   h3,
@@ -127,6 +127,27 @@ ul ul {
   margin-bottom: 0.1em;
   padding: 0;
 }
+
+/* Migliora l'allineamento delle liste */
+ul, ol {
+  margin-left: 1em;
+  padding-left: 1.2em;
+  list-style-position: outside;
+}
+
+/* Allinea i paragrafi nelle liste */
+ul p, ol p {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  margin-left: 0;
+  padding-left: 0.1em;
+  text-indent: 0; /* indent for list items */
+  margin-bottom: 0.3em; /* space between list items, if needed */
+}
+
 
 /* Following EPUB 3 spec by the letter (applies to RS but let’s make sure it is respected because we never know) */
 nav[epub|type~="toc"] ol {
@@ -652,61 +673,77 @@ is night-mode compatible (black asterisk + white border) */
 /*}*/
 
 /* TABLES */
+/* === TABLES === */
+
+/* Contenitore opzionale per scroll orizzontale */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* per iOS */
+}
+
+/* Stile base tabella */
 table {
-  display: table;
-  table-layout: auto;
-  border-collapse: collapse;
-  border-spacing: 0;
+  width: 100%;
   max-width: 100%;
   margin: 1.5em auto;
-  /* Note: legacy RMSDK sets auto to 0, which is permitted in a footnote of the EPUB2 specs */
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: auto;
   font-feature-settings: "tnum" 1;
   font-variant-numeric: tabular-nums;
 }
+
+/* Comportamento responsive nei lettori moderni */
+@media screen {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* Compatibilità specifica Kindle/MOBI */
 @media amzn-mobi {
   table {
     margin: 1em 0;
   }
 }
+
+/* Header e celle */
+th, td {
+  word-break: break-word;
+  word-wrap: break-word;         /* fallback */
+  padding: 0.3em 0.6em;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 0.0625em solid currentColor;
+  empty-cells: show;
+}
+
+/* Header */
+th {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+/* Caption della tabella */
 caption {
   caption-side: top;
-  /* Note: only value legacy RMSDK supports */
-  
-  /* proprietary for Legacy RMSDK */
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -webkit-hyphens: none;
-  -epub-hyphens: none;
-  hyphens: none;
-  text-indent: 0;
-  /* Necessary as RS may define text-indent for p */
   text-align: center;
   font-weight: bold;
-}
-/* tables */
-table, th, td {
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 0.25em;
-    border-bottom: 0.0625em solid currentColor;
-    empty-cells: show;
-    text-align: left;
+  text-indent: 0;
+  hyphens: none;
+  -epub-hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
 }
 
-th {
-    font-weight: bold;
-}
-
-
-
-
-
-
+/* Variante per tabelle con layout fisso */
 .table-fixed {
-    table-layout: fixed;
+  table-layout: fixed;
 }
+
 /* CODE */
 pre {
   margin: 1.5em 0 1.5em 5%;
@@ -734,13 +771,41 @@ code {
     color: inherit;
     background-color: palegoldenrod;
     padding: 2px;
-    font-size: 105%;
+    font-size: 90%;
 }
 kbd {
     border-radius: 2px;
     padding: 2px;
     border: 1px solid;
 }
+
+.code-area {
+  width: 85%;                /* Più stretto rispetto al contenitore (puoi variare tra 60-90%) */
+  margin: 1.5em auto 1.5em 0.5em; /* Sopra/auto/destra/sinistra: auto centra, 0.5em sposta a sinistra */
+  background: #f3f3f3;
+  border: 1.5px solid #d5d5d5;
+  border-radius: 8px;
+  padding: 1.2em 1.5em;
+  box-shadow: 0 0 8px #eee;
+  display: block;
+}
+
+.code-area pre {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+pre code {
+  font-size: 0.9em;
+  line-height: 1.2;
+  /* Note: KF8 will force this value unless you use "el.class pre code" */
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+  /* iBooks override (iOS 9 + El Capitan in night mode) */
+}
+
 /* MEDIAS */
 /* fix for ReadiumCSS */
 audio

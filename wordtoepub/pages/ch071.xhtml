@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en-us" lang="en-us">
+  <head>
+    
+
+    <meta name="generatedBy" content="DAISY WordToEPUB 1.0.11 with Pandoc 3.1.2"/>
+    <title>Defining the Cloud-Native Information Ecosystem</title>
+    <style></style>
+    <link rel="stylesheet" type="text/css" href="../styles/wordtoepub_final.css"/>
+  </head>
+  <body epub:type="bodymatter">
+    <section id="span-xmllangit-it-langit-itdefining-the-cloud-native-information-ecosystemspan" class="level2">
+      <h2>
+        Defining the Cloud-Native Information Ecosystem
+      </h2>
+      <p style="text-align:left;">In this chapter, we introduce a formal specification of the cloud-native information ecosystem, outlining its foundational (core) properties along with a suggested service model.</p>
+      <p style="text-align:left;">It is important to clarify that <i>cloud-native</i> does not necessarily imply the use of a public cloud, even though public cloud infrastructures often come to mind when the term is mentioned. This discussion does not focus on where or how the cloud-native ecosystem is physically implemented.</p>
+      <p style="text-align:left;">The cloud-native ecosystem embraces and efficiently manages mixed architectures—multi-cloud and hybrid alike. Whether services are running in a container next to your garden or in a massive hyperscale data center is entirely transparent to the model.</p>
+      <p style="text-align:left;">Rather than prescribing a fixed implementation, the cloud-native information ecosystem should be seen as a reference model—an ideal to aim for and a benchmark for guiding an organization’s internal process of continuous improvement.</p>
+      <p style="text-align:left;"></p>
+      <p>
+        <span class="textcolor_172D4D">Principles of the Cloud-Native Information Ecosystem</span>
+      </p>
+      <p>Adopting a cloud-native model is not merely a technical decision—it's a design philosophy. This section explores the key principles that serve as the structural pillars for building flexible, resilient, and scalable ecosystems.</p>
+      <p>Each principle is introduced as a cornerstone of architectural and operational integrity:</p>
+      <ul>
+        <li>
+          <p>
+            <b>
+              Automation
+            </b>
+            <br/>
+            Automating workflows and infrastructure reduces manual errors, accelerates delivery, and supports reproducibility across environments.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>
+              Modularity
+            </b>
+            <br/>
+            Systems are designed as loosely coupled components that can evolve independently, promoting agility and maintainability.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>
+              Resilience
+            </b>
+            <br/>
+            The ecosystem is engineered to recover from failures and adapt to disruptions, ensuring continuity of service even under stress.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>
+              Scalability
+            </b>
+            <br/>
+            The architecture supports horizontal and vertical scaling, allowing resources to grow or shrink dynamically according to demand.
+          </p>
+        </li>
+        <li>
+          <p style="text-align:left;">
+            <b>
+              Security by Design
+            </b>
+            <br/>
+            Security is embedded into the architecture from the start—not added as an afterthought—ensuring trust, compliance, and risk mitigation.
+          </p>
+        </li>
+      </ul>
+      <p>These principles are not abstract ideals; they are practical design rules that shape how services are developed, deployed, and maintained across the organization.</p>
+      <p style="text-align:left;">A system can be considered a <b>cloud-native information ecosystem</b> if it exhibits the following core properties:</p>
+      <p style="text-align:left;">
+        <b>Article 1</b>
+        <br/>
+The entire ecosystem must be fully represented—and representable—through version-controlled source code.</p>
+      <p style="text-align:left;">
+        <b>Article 2</b>
+        <br/>
+Its lifecycle must be governed by operational workflows, also defined as source code, which are functionally coherent and categorized by specific goals and missions. These operational workflows are referred to as <i>pipelines</i>.</p>
+      <p style="text-align:left;">
+        <b>Article 3</b>
+        <br/>
+Pipelines are executed by automated agents triggered by events. These events may originate from the internal states of the ecosystem or be initiated by human supervisory input.</p>
+      <p style="text-align:left;">
+        <b>Article 4</b>
+        <br/>
+A cloud-native ecosystem consists of one or more cloud-native information ecosystems, encompassing both hardware and software components.</p>
+      <p style="text-align:left;">
+        <b>Article 5</b>
+        <br/>
+The lifecycle of a cloud-native ecosystem <b>cannot</b> be represented as the mere aggregation of the lifecycles of its individual information systems.</p>
+      <p>
+        Old Birba:
+        <br/>
+        Jenny, before we venture further, let me show you something special. These five articles aren’t just technical statements. Think of them as the constitutional principles of a true cloud-native ecosystem.
+      </p>
+      <p>
+        Jenny:
+        <br/>
+        Wow, they sound almost... sacred. So, if I understand them well, I’ll be able to tell the difference between an ecosystem that’s truly cloud-native and one that just pretends to be?
+      </p>
+      <p>
+        Old Birba:
+        <br/>
+        Precisely. It’s not just about using the cloud or running containers. It’s about thinking in code, governing everything through automated logic, and building a living system—not just a collection of isolated parts.
+      </p>
+      <p>
+        Jenny:
+        <br/>
+        And the last rule... the one about the lifecycle?
+      </p>
+      <p>
+        Old Birba (smiling):
+        <br/>
+        Ah, that one’s the most subtle. An ecosystem isn’t just the sum of its parts. It has emergent behavior. Like a symphony—it’s not enough to add up the notes, you need the intent behind the music.
+      </p>
+      <section id="span-xmllangit-it-langit-itarticle-1-representing-the-information-ecosystem-as-source-codespan" class="level4">
+        <h4>
+          Article 1 – Representing the Information Ecosystem as Source Code
+        </h4>
+        <p>A cloud-native information ecosystem can be fully described using source code. This source code can be classified into two main categories: <b>Structural source code</b> and <b>Application source code.</b></p>
+        <p>
+          <b>Structural source code</b> refers to code that defines and represents:</p>
+        <ul>
+          <li>
+            <p>
+              Data structures
+            </p>
+          </li>
+          <li>
+            <p>
+              Network configuration
+            </p>
+          </li>
+          <li>
+            <p>
+              Cloud resource groups
+            </p>
+          </li>
+          <li>
+            <p>
+              Individual cloud resources
+            </p>
+          </li>
+          <li>
+            <p>
+              Pipelines
+            </p>
+          </li>
+          <li>
+            <p>
+              Access assignment instructions for accounts
+            </p>
+          </li>
+          <li>
+            <p>
+              Account provisioning instructions.
+            </p>
+          </li>
+        </ul>
+        <p>
+          <b>Application source code</b> includes code that defines and represents:</p>
+        <ul>
+          <li>
+            <p>
+              A function
+            </p>
+          </li>
+          <li>
+            <p>
+              A data set
+            </p>
+          </li>
+          <li>
+            <p>
+              A data transformation
+            </p>
+          </li>
+          <li>
+            <p>
+              A container
+            </p>
+          </li>
+          <li>
+            <p>
+              A user interface
+            </p>
+          </li>
+          <li>
+            <p>
+              Documentation
+            </p>
+          </li>
+          <li>
+            <p>
+              An API
+            </p>
+          </li>
+        </ul>
+        <p>There is also a super-category designed to represent architectural models for cloud-native ecosystems, known as a blueprint.</p>
+        <p>A blueprint contains all the source code instructions that are necessary and sufficient to deploy, manage, and eventually decommission a complete business solution within a cloud-native ecosystem. It acts as both the creation plan and lifecycle management guide, including full teardown capabilities.</p>
+        <p style="text-align:left;"></p>
+      </section>
+      <section id="span-xmllangit-it-langit-itarticle-2-representing-the-lifecycle-of-a-cloud-native-information-ecosystemspan" class="level4">
+        <h4>
+          Article 2 – Representing the Lifecycle of a Cloud-Native Information Ecosystem
+        </h4>
+        <p>This article introduces the pipeline as a key tool for translating a functional requirement—defined in source code and stored in one or more repositories—into an executable instance (<i>run</i>) within a specific environment (<i>host</i>) at a given point in time.</p>
+        <p>We are in the realm of SDLC—the Software Development Lifecycle—which includes code interpretation, compilation, and distribution. This entire process is itself represented through one or more pipelines.</p>
+        <p>A pipeline is a sequence of source code instructions, designed to be processed by an agent—a runtime interpreter and executor of the specified commands.</p>
+        <p>As we will see in more detail, a pipeline is composed of instructions written in domain-specific languages that describe the changes to be applied to the ecosystem. The service model provides a way to classify pipelines based on their operational domain, using a procedure inspired by the ISO/OSI stack layering.</p>
+        <p>Here is a simplified example of a YAML configuration file for an Azure Pipeline. It provisions a virtual machine, configures a firewall, and sets up a VPN—leveraging the Infrastructure as Code (IaC) approach via Azure CLI or Azure Resource Manager (ARM) templates:</p>        
+        <div class="code-area">
+          <p style="text-align:left;">This YAML code is a simplified example of an Azure Pipeline that provisions a virtual machine, configures a firewall, and sets up a VPN using Infrastructure as Code (IaC) principles.</p>
+        <pre><code>
+trigger:
+ - main
+
+pool:
+vmImage: 'ubuntu-latest'  
+steps:   
+# This pipeline creates a virtual network, firewall, VPN gateway, and a virtual machine in Azure.
+# It also configures the firewall to allow SSH access to the VM.
+# Ensure you have the necessary permissions and Azure CLI installed.
+
+# Variables
+# Step 1: Azure login
+- task: AzurELCI@2  
+# Step 2: Crearwe virtual network (VNet)
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Virtual Network (VNet)"
+       az network vnet create \
+         --name MyVNet \
+         --resource-group MyResourceGroup \
+         --subnet-name MySubnet \
+         --address-prefix 10.0.0.0/16 \
+         --subnet-prefix 10.0.1.0/24
+         
+# Step 3: Create firewall
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Firewall"
+       az network firewall create \
+         --name MyFirewall \
+         --resource-group MyResourceGroup \
+         --location status
+  
+       echo "Creating Firewall IP ConFiguretion"
+       az network firewall ip-config create \
+         --firewall-name MyFirewall \
+         --name MyFirewallConfig \
+         --public-ip-address $(az network public-ip create --name MyFirewallPublicIP --resource-group MyResourceGroup --allocation-method Static --query publicIp.id --output tsv) \
+         --vnet-name MyVNet
+  
+# Step 4: Create VPN Gateway
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating VPN Gateway"
+       az network vnet-gateway create \
+         --resource-group MyResourceGroup \
+         --name MyVpnGateway \
+         --public-ip-address MyVpnGatewayPublicIP \
+         --vnet MyVNet \
+         --gateway-type Vpn \
+         --vpn-type RouteBased \
+         --sku VpnGw1 \
+         --no-wait
+  
+# Step 5: Create virtual Machine
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Virtual Machine"
+       az vm create \
+         --resource-group MyResourceGroup \
+         --name MyVM \
+         --image UbuntuLTS \
+         --vnet-name MyVNet \
+         --subnet MySubnet \
+         --admin-username azureuser \
+         --generate-ssh-keys
+  
+# Step 6: ConFigure il firewall per la VM
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Configuring Firewall Rules"
+       az network firewall network-rule create \
+         --firewall-name MyFirewall \
+         --resource-group MyResourceGroup \
+         --name Allow-SSH \
+         --protocols 'TCP' \
+         --source-addresses '*' \
+         --destination-addresses $(az vm show --name MyVM --resource-group MyResourceGroup --query 'privateIps' --output tsv) \
+         --destination-ports '22' \
+         --action allow
+        </code></pre></div>
+        <p style="text-align:center;">
+          <span class="textcolor_595959">
+            Code 1 - YAML Azure
+          </span>
+        </p>
+        <p style="text-align:left;">
+          <b>Example – A Cloud-Native Pipeline as Source Code</b>
+    To illustrate these concepts, let’s examine a real-world YAML configuration for an Azure Pipeline. This file orchestrates the deployment of a basic cloud infrastructure using Infrastructure as Code (IaC) principles. It includes steps for:</p>
+        <ul>
+          <li>
+            <p>
+              Logging into Azure
+            </p>
+          </li>
+          <li>
+            <p>
+              Creating a Virtual Network (VNet) and subnet
+            </p>
+          </li>
+          <li>
+            <p>
+              Deploying a firewall with IP configuration
+            </p>
+          </li>
+          <li>
+            <p>
+              Creating a VPN Gateway
+            </p>
+          </li>
+          <li>
+            <p>
+              Provisioning a virtual machine
+            </p>
+          </li>
+          <li>
+            <p>
+              Configuring firewall rules to allow secure access (e.g., SSH)
+            </p>
+          </li>
+        </ul>
+        <p>Each step is defined as executable source code that can be versioned, audited, and reused. The instructions are interpreted and executed by Azure agents in response to specific events—fully aligned with the definition of a cloud-native pipeline.</p>
+        <p>This is a concrete example of how operational workflows—pipelines—are represented in code and triggered to enact changes within the ecosystem, in line with <b>Service Development Lifecycle (SDLC)</b> practices.</p>
+        <p>Would you like me to include the YAML code in the book with syntax highlighting and English comments or just reference it as a downloadable resource from exploras.cloud?</p>
+        <p style="text-align:left;"></p>
+        <div class="code-area">
+          <p style="text-align:left;">This YAML code is a simplified example of an AWS Pipeline that provisions a virtual machine, configures a firewall, and sets up a VPN using Infrastructure as Code (IaC) principles.</p>
+        <pre><code>
+ 1. trigger:
+ 2. - main
+ 3.  
+ 4. pool:
+ 5.   vmImage: 'ubuntu-latest'
+ 6.  
+ 7. steps:
+ 8.  
+ 9. # Step 1: Setup Terraform
+10. - task: UseTerraform@0
+11.   inputs:
+12.     terraformVersion: 'latest'
+13.  
+14. # Step 2: ConFigure AWS account
+15. - task: AWSCLI@1
+16.   inputs:
+17.     awsCredentials: '<aws-service-connection-name>'
+18.     awsRegion: 'us-east-1'
+19.  
+20. # Step 3: Terraform Init
+21. - script: |
+22.     terraform init
+23.   displayName: 'Terraform Init.'
+24.  
+25. # Step 4: VPC with Terraform
+26. - script: |
+27.     cat <<EOF > vpc.tf
+28.     resource "aws_vpc" "my_vpc" {
+29.       cidr_block = "10.0.0.0/16"
+30.     }
+31.  
+32.     resource "aws_subnet" "my_subnet" {
+33.       vpc_id     = aws_vpc.my_vpc.id
+34.       cidr_block = "10.0.1.0/24"
+35.     }
+36.     EOF
+37.     terraform apply -auto-approve
+38.   displayName: 'Create VPC.'
+39.  
+40. # Step 5: Create a Security Group (firewall) with Terraform
+41. - script: |
+42.     cat <<EOF > security_group.tf
+43.     resource "aws_security_group" "my_sg" {
+44.       vpc_id = aws_vpc.my_vpc.id
+45.  
+46.       ingress {
+47.         from_port   = 22
+48.         to_port     = 22
+49.         protocol    = "tcp"
+50.         cidr_blocks = ["0.0.0.0/0"]
+51.       }
+52.  
+53.       egress {
+54.         from_port   = 0
+55.         to_port     = 0
+56.         protocol    = "-1"
+57.         cidr_blocks = ["0.0.0.0/0"]
+58.       }
+59.     }
+60.     EOF
+61.     terraform apply -auto-approve
+62.   displayName: 'Create Security Group.'
+63.  
+64. # Step 6: Create a VPN with Terraform
+65. - script: |
+66.     cat <<EOF > vpn.tf
+67.     resource "aws_vpn_gateway" "my_vpn" {
+68.       vpc_id = aws_vpc.my_vpc.id
+69.       availability_zone = "us-east-1a"
+70.     }
+71.     EOF
+72.     terraform apply -auto-approve
+73.   displayName: 'Create VPN Gateway.'
+74.  
+75. # Step 7: create a virtual machine EC2 with Terraform
+76. - script: |
+77.     cat <<EOF > ec2.tf
+78.     resource "aws_instance" "my_ec2" {
+79.       ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI ID
+80.       instance_type = "t2.micro"
+81.       subnet_id     = aws_subnet.my_subnet.id
+82.       security_groups = [aws_security_group.my_sg.name]
+83.       tags = {
+84.         Name = "MyEC2Instance"
+85.       }
+86.     }
+87.     EOF
+88.     terraform apply -auto-approve
+89.   displayName: 'Create EC2 Instance.'
+        </code></pre></div>
+        <p style="text-align:center;">
+          <span class="textcolor_595959">
+            Code 2 - YAML AWS
+          </span>
+        </p>
+        <p style="text-align:left;"></p>
+      </section>
+      <section id="span-xmllangit-it-langit-itarticle-3-the-automated-agentspan" class="level4">
+        <h4>
+          Article 3 – The Automated Agent
+        </h4>
+        <p>In essence, the agent is a simplified interpreter. Most of the time, it merely executes the instructions it receives; it does not transform code on its own. It acts as a sophisticated manager of third-party service calls—it does not directly perform operations on the cloud infrastructure but instead delegates them to external services.</p>
+        <p>Its real capability lies in understanding <i>which external system or tool</i> should execute the source code instructions. It is not intelligent—at least, not yet. It simply reads the instructions from the source code and forwards the appropriate commands, along with any necessary files or parameters, to the right destination.</p>
+        <p>The term <i>automated agent</i> may sound smarter than it is. For now, we should avoid assigning it any notion of intelligence. This topic will be revisited in Part IV of the second volume, where we’ll explore the future potential of more autonomous agents.</p>
+        <p>The service model, particularly within the phases of <b>Continuous Integration (CI)</b> and <b>Continuous Deployment/Delivery (CD)</b>, includes the agent as a core element. It is responsible for guiding actions such as compiling code, generating build artifacts, distributing them, and orchestrating their installation and execution across target environments—all directed by pipelines.</p>
+        <p>In a cloud-native ecosystem, this represents the full <b>CI/CD/CD</b> process: Continuous Integration, Continuous Deployment, and Continuous Delivery, as defined by the DevOps framework discussed extensively in the chapter on the Cloud-Native Service Model.</p>
+        <p>The agent itself is typically a third-party software tool. In large-scale ecosystems, it may later be replaced by proprietary software—also represented as code. However, such customization is generally justifiable only in very large, mature environments.</p>
+        <p>This third article implicitly introduces a dependency: the agent, too, should be represented as code.</p>
+        <p>There is, however, a <i>zero point</i>—the initial bootstrapping of the cloud-native information ecosystem—where human operators perform a one-time manual installation of the control infrastructure. This includes the minimum set of instructions needed to activate the ecosystem for the first time.</p>
+        <p>From that moment onward, the system is guided entirely by pipelines.</p>
+        <p>A later chapter will present the full baseline software stack required prior to launching the ecosystem.</p>
+        <p>The fourth key idea here defines the scope and role of agents and pipelines within the cloud-native information ecosystem. In essence, they are service tools: mechanisms designed to deliver operational capabilities to the people working within the ecosystem.</p>
+        <p>A few practical examples can help clarify their role ahead of the deeper technical explanations found in later chapters.</p>
+        <p>Take, for instance, the onboarding process for a new employee. This process typically follows strict procedures—often legal in nature—and requires both formal and technical steps.</p>
+        <p>In a cloud-native ecosystem, the entire working environment is virtualized and provisioned automatically, based on the operational model assigned to the individual’s role or responsibilities.</p>
+        <p>The provisioning of tools, access credentials, personal software environments, and even hardware devices—all of this is performed by pipelines.</p>
+        <p>In fact, the service model in a cloud-native environment is strongly geared toward just-in-time, automated provisioning, which drives significant efficiency.</p>
+        <p>Devices provided to employees are designed specifically for secure cloud work. Nothing expensive or custom-made—these are standard devices widely available on the market, preconfigured according to specifications agreed upon with suppliers.</p>
+        <p>In this model, regardless of where the new employee lives, on their first day of work, the device arrives—likely delivered by courier.</p>
+        <p style="text-align:left;"></p>
+        <p style="text-align:left;"></p>
+      </section>
+      <section id="span-xmllangit-it-langit-itarticle-4-composition-of-the-cloud-native-ecosystemspan" class="level4">
+        <h4>
+          Article 4 – Composition of the Cloud-Native Ecosystem
+        </h4>
+        <p>A cloud-native ecosystem is composed of three core elements: <b>people</b>, <b>hardware</b>, and <b>software</b>.</p>
+        <p>The hardware and software components are represented collectively by what we define as the cloud-native information ecosystem.</p>
+        <p>In fact, a cloud-native ecosystem may include one or more cloud-native information ecosystems. This article defines both the core and the boundaries of the broader ecosystem—a boundary that will be formally addressed in Article 5.</p>
+        <p>A cloud-native information ecosystem is a closed and self-contained model. By design, it excludes both human actors and interactions with non-cloud-native systems.</p>
+        <p>Now, this does <i>not</i> mean that hybrid environments are off-limits—heavens no!</p>
+        <p>Working with hybridized ecosystems is entirely feasible. However, such integration introduces a degradation of the ideal cloud-native model, particularly from the standpoint of risk analysis. This is because it creates a dependency on an external, non-cloud-native system.</p>
+        <p>This statement is to be understood neutrally, not as a judgment. It simply introduces a new variable in the ecosystem’s structure—one that adds a layer of measurable uncertainty, statistically speaking, to the overall risk profile.</p>
+        <p>That said, the presence of people remains essential to the broader cloud-native ecosystem. Even though they are not modeled <i>within</i> the cloud-native information system itself, the actions and workflows of individuals are orchestrated through pipelines—tools that connect the technical and human layers.</p>
+        <p>Let’s consider a concrete example: the onboarding of a new employee.</p>
+        <p>Traditionally, this process involves legal, administrative, and technical steps. In a cloud-native environment, however, onboarding is fully automated. The individual’s digital workspace is provisioned according to their assigned role or responsibilities.</p>
+        <p>This includes:</p>
+        <ul>
+          <li>
+            <p>
+              Creating and configuring a personal working environment
+            </p>
+          </li>
+          <li>
+            <p>
+              Assigning access permissions
+            </p>
+          </li>
+          <li>
+            <p>
+              Deploying required software applications
+            </p>
+          </li>
+          <li>
+            <p>
+              Delivering physical devices, pre-configured for secure access
+            </p>
+          </li>
+        </ul>
+        <p>All of this is executed via pipelines.</p>
+        <p>In this model, just-in-time provisioning is not a luxury—it’s a core feature. The entire process is designed for efficiency, security, and global scalability.</p>
+        <p>The devices themselves are standard, market-available hardware, preordered from suppliers and preconfigured based on company policies. Regardless of where the employee lives, they receive everything they need on their first day—often delivered straight to their door.</p>
+        <p>This example highlights the fundamental role of the cloud-native ecosystem as a service enabler: not just a collection of technologies, but a coordinated system that blends automation, infrastructure, and people into a seamless operational fabric.</p>
+        <p style="text-align:left;"></p>
+      </section>
+      <section id="span-xmllangit-it-langit-itarticle-5-limits-of-representation-in-the-cloud-native-information-ecosystemspan" class="level4">
+        <h4>
+          Article 5 – Limits of Representation in the Cloud-Native Information Ecosystem
+        </h4>
+        <p>This article states a simple yet fundamental truth.</p>
+        <p>Without the aid of artificial intelligence—one capable of constructing a real-time, dynamic model of a cloud-native ecosystem that includes both people and integrated information systems—we are not yet able to fully represent such an ecosystem. At best, we can approximate it.</p>
+        <p>How approximate that representation is depends on two factors:</p>
+        <ul>
+          <li>
+            <p>
+              The 
+              <b>
+                mathematical formula
+              </b>
+               or model applied.
+            </p>
+          </li>
+          <li>
+            <p>
+              The 
+              <b>
+                computational power
+              </b>
+               available to support it.
+            </p>
+          </li>
+        </ul>
+        <p>This brings us back to the conceptual foundations laid out in Part II, in the chapter titled "A Mathematical View of a Business Ecosystem". There, we introduced the idea of representing complex interactions—between individuals, departments, and time—through multi-variable functions such as:</p>
+        <p style="text-align:left;">    <b>f(i, d, t)</b> = value of a parameter (e.g., cost, load, access)  for individual <i>i</i>, department <i>d</i>, at time <i>t</i></p>
+        <p>These models offer a powerful lens through which to observe and analyze business dynamics. However, as the system grows in scale and heterogeneity, especially when integrating non-cloud-native components and human behavior, the mathematical complexity escalates quickly.</p>
+        <p>At a certain point, the risk emerges of defining models that become NP-Complete—that is, problems for which no known algorithm can compute a solution efficiently at scale.</p>
+        <p>This is not just a theoretical concern. Introducing too many rules, constraints, or interdependencies can make certain types of analysis or simulation computationally infeasible, even if technically solvable.</p>
+        <p>Therefore, the cloud-native information ecosystem should be seen as a structured approximation, not an absolute model. We embrace this limitation not as a weakness, but as a pragmatic boundary that informs our design and operational strategies.</p>
+        <p>For deeper insight into the nature of NP-Complete problems, see the reference material: <i>NP-Complete Problems – MIT OpenCourseWare</i> (37).</p>
+        <hr/>
+        <p>
+          Jenny:
+          <br/>
+          Old, these five articles... they almost feel like the constitution of a cloud-native ecosystem! Like we’ve drafted its fundamental law!
+        </p>
+        <p>
+          Old Birba (nodding slowly):
+          <br/>
+          You’re not far off, Jenny. Every ecosystem needs a shared language, clear principles. And that’s exactly what these articles provide: they define what we can represent, what we can’t, and—most importantly—how we do it, strictly through code.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          So if I got it right… everything has to be expressed as code? Even the infrastructure?
+        </p>
+        <p>
+          Old Birba:
+          <br/>
+          Precisely. Article 1 reminds us that in a true cloud-native system, everything is code. Not just the business logic, but also the network, the resources, the permissions—even the pipelines themselves.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          Ah yes! Pipelines. They're the stars of Article 2, right? They bring the code to life—they turn instructions into action!
+        </p>
+        <p>
+          Old Birba:
+          <br/>
+          Exactly. And they’re executed by automated agents, as introduced in Article 3. But don’t be fooled by the name: these agents are not intelligent—at least not yet. They’re diligent executors, reading commands and handing them off to the right services.
+        </p>
+        <p>
+          Jenny (laughing):
+          <br/>
+          Sounds like me when I follow your instructions to the letter!
+        </p>
+        <p>
+          Old Birba (smiling knowingly):
+          <br/>
+          Let’s not exaggerate. You always add a touch of curiosity. And that brings us straight to Article 4: the cloud-native ecosystem doesn’t ignore people—it simply represents them indirectly, through automated services that do the heavy lifting. Like the onboarding process.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          That really stuck with me. It’s like everything is ready before I even ask. My whole workspace, apps, access, even the laptop... It feels like magic.
+        </p>
+        <p>
+          Old Birba:
+          <br/>
+          Magic powered by pipelines. But beware, young explorer… even magic has its limits. And that’s what Article 5 is all about.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          Oh right... the philosophical one. The one that says we can’t fully model the whole ecosystem—unless some kind of future AI shows up.
+        </p>
+        <p>
+          Old Birba:
+          <br/>
+          Exactly. Until that day comes, we can only approximate reality. And the more detailed our models get, the more computationally complex they become. If we’re not careful, we risk stepping into the realm of NP-Complete problems—those unsolvable puzzles that even algorithmic wizards struggle with.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          So... even the cloud has its mysteries?
+        </p>
+        <p>
+          Old Birba:
+          <br/>
+          And its laws. Understanding them is the first step toward building an ecosystem that’s not just functional—but truly alive.
+        </p>
+        <p>
+          Jenny:
+          <br/>
+          All right then! I’m ready to follow the rules. But... can I still use color-coded labels in the code?
+        </p>
+        <p>
+          Old Birba (laughs):
+          <br/>
+          Only if you document every step. Even magic needs good footnotes.
+        </p>
+      </section>
+    </section>
+  </body>
+</html>

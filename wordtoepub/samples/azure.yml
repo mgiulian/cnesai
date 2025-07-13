@@ -1,0 +1,101 @@
+trigger:
+ - main
+
+pool:
+vmImage: 'ubuntu-latest'  
+steps:   
+ # This pipeline creates a virtual network, firewall, VPN gateway, and a virtual machine in Azure.
+ # It also configures the firewall to allow SSH access to the VM.
+ # Ensure you have the necessary permissions and Azure CLI installed.
+
+ # Variables
+# Step 1: Azure login
+- task: AzurELCI@2  
+# Step 2: Crearwe virtual network (VNet)
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Virtual Network (VNet)"
+       az network vnet create \
+         --name MyVNet \
+         --resource-group MyResourceGroup \
+         --subnet-name MySubnet \
+         --address-prefix 10.0.0.0/16 \
+         --subnet-prefix 10.0.1.0/24
+         
+# Step 3: Create firewall
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Firewall"
+       az network firewall create \
+         --name MyFirewall \
+         --resource-group MyResourceGroup \
+         --location status
+  
+       echo "Creating Firewall IP ConFiguretion"
+       az network firewall ip-config create \
+         --firewall-name MyFirewall \
+         --name MyFirewallConfig \
+         --public-ip-address $(az network public-ip create --name MyFirewallPublicIP --resource-group MyResourceGroup --allocation-method Static --query publicIp.id --output tsv) \
+         --vnet-name MyVNet
+  
+# Step 4: Create VPN Gateway
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating VPN Gateway"
+       az network vnet-gateway create \
+         --resource-group MyResourceGroup \
+         --name MyVpnGateway \
+         --public-ip-address MyVpnGatewayPublicIP \
+         --vnet MyVNet \
+         --gateway-type Vpn \
+         --vpn-type RouteBased \
+         --sku VpnGw1 \
+         --no-wait
+  
+# Step 5: Create virtual Machine
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Creating Virtual Machine"
+       az vm create \
+         --resource-group MyResourceGroup \
+         --name MyVM \
+         --image UbuntuLTS \
+         --vnet-name MyVNet \
+         --subnet MySubnet \
+         --admin-username azureuser \
+         --generate-ssh-keys
+  
+# Step 6: ConFigure il firewall per la VM
+- task: AzurELCI@2
+  inputs:
+     azureSubscription: '<azure-service-connection-name>'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: |
+       echo "Configuring Firewall Rules"
+       az network firewall network-rule create \
+         --firewall-name MyFirewall \
+         --resource-group MyResourceGroup \
+         --name Allow-SSH \
+         --protocols 'TCP' \
+         --source-addresses '*' \
+         --destination-addresses $(az vm show --name MyVM --resource-group MyResourceGroup --query 'privateIps' --output tsv) \
+         --destination-ports '22' \
+         --action allow
+  

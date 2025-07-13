@@ -1,0 +1,89 @@
+trigger:
+- main
+ 
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+steps:
+ 
+# Step 1: Setup Terraform
+- task: UseTerraform@0
+  inputs:
+    terraformVersion: 'latest'
+ 
+# Step 2: ConFigure AWS account
+- task: AWSCLI@1
+  inputs:
+    awsCredentials: '<aws-service-connection-name>'
+    awsRegion: 'us-east-1'
+ 
+# Step 3: Terraform Init
+- script: |
+    terraform init
+  displayName: 'Terraform Init.'
+ 
+# Step 4: VPC with Terraform
+- script: |
+    cat <<EOF > vpc.tf
+    resource "aws_vpc" "my_vpc" {
+      cidr_block = "10.0.0.0/16"
+    }
+ 
+    resource "aws_subnet" "my_subnet" {
+      vpc_id     = aws_vpc.my_vpc.id
+      cidr_block = "10.0.1.0/24"
+    }
+    EOF
+    terraform apply -auto-approve
+  displayName: 'Create VPC.'
+ 
+# Step 5: Create a Security Group (firewall) with Terraform
+- script: |
+    cat <<EOF > security_group.tf
+    resource "aws_security_group" "my_sg" {
+      vpc_id = aws_vpc.my_vpc.id
+ 
+      ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+ 
+      egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
+    EOF
+    terraform apply -auto-approve
+  displayName: 'Create Security Group.'
+ 
+# Step 6: Create a VPN with Terraform
+- script: |
+    cat <<EOF > vpn.tf
+    resource "aws_vpn_gateway" "my_vpn" {
+      vpc_id = aws_vpc.my_vpc.id
+      availability_zone = "us-east-1a"
+    }
+    EOF
+    terraform apply -auto-approve
+  displayName: 'Create VPN Gateway.'
+ 
+# Step 7: create a virtual machine EC2 with Terraform
+- script: |
+    cat <<EOF > ec2.tf
+    resource "aws_instance" "my_ec2" {
+      ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI ID
+      instance_type = "t2.micro"
+      subnet_id     = aws_subnet.my_subnet.id
+      security_groups = [aws_security_group.my_sg.name]
+      tags = {
+        Name = "MyEC2Instance"
+      }
+    }
+    EOF
+    terraform apply -auto-approve
+  displayName: 'Create EC2 Instance.'
